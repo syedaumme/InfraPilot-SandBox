@@ -1,0 +1,11 @@
+Day 2 – No runtime logs stored.
+
+Reason:
+Commands practised today (top, free, df, ping) produce
+dynamic, real-time output that changes continuously.
+
+Logging such output does not add value and may create
+misleading or noisy logs.
+
+Instead, observations and learnings are documented
+in docs/day2-notes.md.
