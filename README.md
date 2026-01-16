@@ -22,57 +22,15 @@ This project focuses on **visibility and control of system resources**, not auto
 ## 🧩 System Design (Frontend → Shell → OS)
 
 ### 📐 High-Level Architecture
-
-──────────────────────────────┐
-│ User │
-│ (Clicks buttons / inputs) │
-└───────────────┬──────────────┘
-│
-│ UI interaction
-▼
-┌──────────────────────────────┐
-│ Frontend UI │
-│ (Buttons / Input Fields) │
-│ │
-│ Examples: │
-│ • Show current directory │
-│ • List files │
-│ • Check memory usage │
-│ • Check disk usage │
-│ • View running processes │
-│ • Network status │
-└───────────────┬──────────────┘
-│
-│ Command request
-▼
-┌──────────────────────────────┐
-│ Backend / Script Layer │
-│ (Shell or Python wrapper) │
-│ │
-│ Executes Linux commands: │
-│ pwd, ls, cd, cp, mv, rm │
-│ free, df, top │
-│ ping, ifconfig, netstat │
-└───────────────┬──────────────┘
-│
-│ OS-level execution
-▼
-┌──────────────────────────────┐
-│ Linux Operating System │
-│ │
-│ • Filesystem │
-│ • Memory │
-│ • Disk │
-│ • Processes │
-│ • Network │
-└───────────────┬──────────────┘
-│
-│ Command output
-▼
-┌──────────────────────────────┐
-│ Frontend UI │
-│ (Displays command output) │
-└──────────────────────────────┘
+User  
+↓  
+Frontend UI (Buttons / Inputs)  
+↓  
+Backend Script Layer (Shell / Python)  
+↓  
+Linux Operating System  
+↓  
+Frontend UI (Displays Output)
 ## 🧠 Learning Objectives
 
 This project helps build understanding of:
