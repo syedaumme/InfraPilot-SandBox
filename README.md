@@ -62,8 +62,7 @@ This project helps build understanding of:
 
 ## 👤 Author
 **Syeda Umme Kulsum**  
-Aspiring DevOps / SRE Engineer  
-Focused on Linux fundamentals, system understanding, and practical learning.
+DevOps / SRE Engineer  
 
 ---
 
