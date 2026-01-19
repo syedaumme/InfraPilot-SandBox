@@ -1,0 +1,6 @@
+root
+uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+root
+kulsum : kulsum devops
+-rw-r--r--. 1 root root 0 Jan 19 08:25 testfile1.txt
+-rw-r-----. 1 root root 0 Jan 19 08:25 testfile1.txt
