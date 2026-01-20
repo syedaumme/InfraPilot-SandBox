@@ -1,0 +1,37 @@
+Filesystem                Size  Used Avail Use% Mounted on
+devtmpfs                  4.0M     0  4.0M   0% /dev
+tmpfs                     888M     0  888M   0% /dev/shm
+tmpfs                     355M  5.0M  350M   2% /run
+/dev/mapper/cs_vbox-root   17G  2.0G   15G  12% /
+/dev/sda1                 960M  306M  655M  32% /boot
+tmpfs                     178M     0  178M   0% /run/user/0
+4	day1.log
+4	day2.log
+4	day3.log
+12	day4.log
+4	day5.log
+4.0K	day1.log
+4.0K	day2.log
+4.0K	day3.log
+12K	day4.log
+4.0K	day5.log
+Filesystem                Inodes IUsed   IFree IUse% Mounted on
+devtmpfs                  221586   390  221196    1% /dev
+tmpfs                     227150     1  227149    1% /dev/shm
+tmpfs                     819200   620  818580    1% /run
+/dev/mapper/cs_vbox-root 8910848 54528 8856320    1% /
+/dev/sda1                 524288   358  523930    1% /boot
+tmpfs                      45430    15   45415    1% /run/user/0
+/boot/initramfs-0-rescue-47ef821452c24bb4bb6191f5ed500204.img
+/proc/kcore
+/usr/lib64/libLLVM.so.18.1
+/boot/initramfs-0-rescue-47ef821452c24bb4bb6191f5ed500204.img
+/proc/kcore
+/usr/lib64/libLLVM.so.18.1
+Filesystem                Inodes IUsed   IFree IUse% Mounted on
+devtmpfs                  221586   390  221196    1% /dev
+tmpfs                     227150     1  227149    1% /dev/shm
+tmpfs                     819200   621  818579    1% /run
+/dev/mapper/cs_vbox-root 8910848 55529 8855319    1% /
+/dev/sda1                 524288   358  523930    1% /boot
+tmpfs                      45430    15   45415    1% /run/user/0
