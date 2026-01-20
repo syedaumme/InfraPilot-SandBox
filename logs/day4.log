@@ -123,3 +123,4 @@ root        1765  0.0  0.1  10100  3456 pts/0    R+   08:39   0:00 ps aux
                total        used        free      shared  buff/cache   available
 Mem:         1817200      360212     1392892        5096      218732     1456988
 Swap:        2097148           0     2097148
+-
