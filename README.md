@@ -1,7 +1,7 @@
 # 🚀 InfraPilot-SandBox
 
 ## 📌 Project Overview
-**InfraPilot-SandBox** is a beginner-friendly DevOps learning project that demonstrates how a **frontend interface** can interact with a **Linux system** by executing shell commands and displaying their output.
+**InfraPilot-SandBox** is a beginner-friendly DevOps learning project that demonstrates how a **frontend interface** can interact with a **Linux system** by executing shell commands and displaying their output..
 
 The project is designed to help learners understand how operating systems are inspected and controlled programmatically — the same idea behind many real-world internal DevOps dashboards and tools.
 
