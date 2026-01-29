@@ -114,7 +114,7 @@ Hands-on learner with a strong focus on **Linux fundamentals, system visibility,
 
 - 🟢 Actively evolving  
 - 🟢 Fundamentals-first   
-- 🟢 Public learning repository  
+- 🟢 currently implementing CPU and process monitoring as part of the InfraPilot backend (Day 10).
 
 ---
 
