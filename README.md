@@ -23,11 +23,6 @@ This project was built to achieve three personal and professional goals:
 - Practice automation with intent (cron, scripts)
 - Understand **why** and **when** to automate
 
-### 3. Interview-Ready System Explanation
-- Be able to explain *what the system does* and *why it is designed this way*
-- Practice tradeoffs, scope control, and design reasoning
-- Build a project that can be confidently discussed end-to-end in interviews
-
 ---
 
 ## 🧩 High-Level System Architecture
@@ -50,41 +45,8 @@ InfraPilot-SandBox incrementally builds a complete DevOps workflow:
 
 Each layer is added **only after the underlying fundamentals are understood**.
 
----
 
-## 📘 Day-Wise Learning Structure (Very Important)
 
-This repository is organized as a **day-by-day learning journey**.
-
-- Each day focuses on a specific Linux / DevOps concept
-- Commands explored are logged
-- Notes explain *what was learned and why*
-- Scripts evolve gradually, not all at once
-
-This makes the repository useful for:
-- My own revision and interview preparation
-- Anyone who wants to **learn Linux and DevOps incrementally**
-- Learners who prefer *building systems over memorizing commands*
-
----
-
-## 🚧 Scope & Limitations (Intentional Design Choices)
-
-- ❌ Not a production monitoring system  
-- ❌ No Prometheus / Grafana  
-- ❌ No alerting or large-scale automation  
-- ❌ Minimal security hardening  
-
-**Why these limitations exist:**
-
-The purpose of this project is **learning and reasoning**, not production readiness.
-Advanced tooling is intentionally avoided to keep the focus on:
-- OS behavior
-- Script logic
-- Automation intent
-- System explainability
-
-This restraint is a **design decision**, not a gap.
 
 ---
 
@@ -106,8 +68,6 @@ This restraint is a **design decision**, not a gap.
 **Syeda Umme Kulsum**  
 DevOps / SRE Engineer  
 
-Hands-on learner with a strong focus on **Linux fundamentals, system visibility, and reliability-oriented thinking**.
-
 ---
 
 ## 📈 Project Status
@@ -116,16 +76,3 @@ Hands-on learner with a strong focus on **Linux fundamentals, system visibility,
 - 🟢 Fundamentals-first   
 - 🟢 currently implementing CPU and process monitoring as part of the InfraPilot backend (Day 10).
 
----
-
-## 📌 Final Note
-
-InfraPilot-SandBox is designed to evolve **one concept at a time**.
-
-Every addition prioritizes:
-- understanding over speed
-- clarity over complexity
-- explainability over feature count
-
-This project reflects how I approach learning and system design:  
-**build slowly, understand deeply, and own every layer**.
