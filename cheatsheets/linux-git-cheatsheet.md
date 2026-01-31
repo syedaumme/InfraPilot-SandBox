@@ -66,7 +66,7 @@ A concise, beginner-friendly reference for **Linux system operations** and **Git
 
 ---
 
-## ⚙️ Processes & System Resources (Day 4)
+## ⚙️ Processes & System Resources 
 
 | Command | What it does |
 |------|-------------|
@@ -84,7 +84,7 @@ A concise, beginner-friendly reference for **Linux system operations** and **Git
 
 ---
 
-## 💽 Disk & Filesystems (Day 5)
+## 💽 Disk & Filesystems 
 
 | Command | What it does |
 |------|-------------|
@@ -96,7 +96,7 @@ A concise, beginner-friendly reference for **Linux system operations** and **Git
 
 ---
 
-## 🌐 Networking (Day 6)
+## 🌐 Networking 
 
 | Command | What it does |
 |------|-------------|
@@ -109,7 +109,7 @@ A concise, beginner-friendly reference for **Linux system operations** and **Git
 
 ---
 
-## ⚙️ Services & Logs (Day 7)
+## ⚙️ Services & Logs 
 
 | Command | What it does |
 |------|-------------|
@@ -140,7 +140,7 @@ A concise, beginner-friendly reference for **Linux system operations** and **Git
 
 ---
 
-## 🔑 One-Line Summary
+## 🔑Summary
 
 ```text
 Linux → observe → diagnose → fix  
