@@ -22,7 +22,6 @@ This project was built to achieve three personal and professional goals:
 - Learn how DevOps tools *surface* system information
 - Practice automation with intent (cron, scripts)
 - Understand **why** and **when** to automate
-
 ---
 
 ## 🧩 High-Level System Architecture
@@ -44,10 +43,6 @@ InfraPilot-SandBox incrementally builds a complete DevOps workflow:
 - Displays system health and logs in a simple frontend UI
 
 Each layer is added **only after the underlying fundamentals are understood**.
-
-
-
-
 ---
 
 ## 🛠️ Tech Stack
