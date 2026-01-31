@@ -50,7 +50,7 @@ A concise, beginner-friendly reference for **Linux system operations** and **Git
 
 ---
 
-## 🔐 Users, Groups & Permissions (Day 3)
+## 🔐 Users, Groups & Permissions 
 
 | Command | What it does |
 |------|-------------|
