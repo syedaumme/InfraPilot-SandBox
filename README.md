@@ -1,6 +1,6 @@
 # 📌 InfraPilot-SandBox
 
-InfraPilot-SandBox is a **fundamentals-first DevOps learning project** designed to demonstrate how a frontend interface can interact with a Linux system to **inspect system health**, **execute shell scripts**, and **present system-level outputs**..
+InfraPilot-SandBox is a **fundamentals-first DevOps learning project** designed to demonstrate how a frontend interface can interact with a Linux system to **inspect system health**, **execute shell scripts**, and **present system-level outputs**.
 
 The project mirrors the *core idea* behind internal DevOps and SRE dashboards:  
 **making operating system state visible, understandable, and explainable**.
