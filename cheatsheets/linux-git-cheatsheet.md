@@ -146,4 +146,4 @@ A concise, beginner-friendly reference for **Linux system operations** and **Git
 Linux → observe → diagnose → fix  
 systemctl → control services  
 journalctl → debug systems  
-Git → track and trust your changes
+Git → track and trust your changes.
