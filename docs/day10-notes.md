@@ -14,7 +14,7 @@ high CPU-consuming processes before automating anything.
 
 ------------------------------------------------------------------------------------------------------------------
 
-Top Command --> 
+# Top Command --> 
 the command column is the name of the process
 The CPU percentage was 0.03 percent. Meaning only 0.03 percentage of the CPU Processing was in use for that partivular process.
 
