@@ -1,4 +1,19 @@
 
+# Day 10 — CPU & Process Monitoring
+
+Today I learned how to inspect running processes and CPU usage.
+
+Key learnings:
+- A process is a running program
+- High CPU usage can slow down the entire system
+- PID helps identify and reason about processes
+- Killing processes blindly is dangerous
+
+I used tools like top and ps to manually identify
+high CPU-consuming processes before automating anything.
+
+------------------------------------------------------------------------------------------------------------------
+
 Top Command --> 
 the command column is the name of the process
 The CPU percentage was 0.03 percent. Meaning only 0.03 percentage of the CPU Processing was in use for that partivular process.
