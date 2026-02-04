@@ -1,0 +1,8 @@
+CPU Usage Check
+---------------
+CPU usage is within safe limits (7%)
+
+Top CPU-consuming processes:
+  PID COMMAND         %CPU
+ 742 kworker/0:5      0.7
+ 1489 bash            0.3
