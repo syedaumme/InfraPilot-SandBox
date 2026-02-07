@@ -61,7 +61,7 @@ Each layer is added **only after the underlying fundamentals are understood**.
 
 - 🟢 Actively evolving  
 - 🟢 Fundamentals-first   
-- 🟢 currently implementing CPU and process monitoring as part of the InfraPilot backend (Day 10).
+- 🟢 currently implementing CPU and process monitoring as part of the InfraPilot backend (Day 11).
   
 ---
 
