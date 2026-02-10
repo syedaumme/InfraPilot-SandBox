@@ -13,6 +13,6 @@ echo -e "\nUptime :\n" >> "$LOG_FILE"
 uptime >> "$LOG_FILE"
 echo -e "\nDisk Usage : \n" >> "$LOG_FILE"
 df -h / >> "$LOG_FILE"
-
+EXIT_CODE=0
 echo -e "\n-----------------------------------------------------------------------------------------------\n" >> "$LOG_FILE"
-
+exit $EXIT_CODE
