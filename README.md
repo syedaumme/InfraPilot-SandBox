@@ -61,7 +61,7 @@ Each layer is added **only after the underlying fundamentals are understood**.
 
 - 🟢 Actively evolving  
 - 🟢 Fundamentals-first   
-- 🟢 Currently Working on Logging Scripts for Real Time Data (Backend)
+- 🟢 Currently Working on Real Time Data (Backend)
   
 ---
 

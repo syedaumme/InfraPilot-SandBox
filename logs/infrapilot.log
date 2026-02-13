@@ -597,3 +597,175 @@ Top CPU-consuming processes:
       5 kworker/R-rcu_p  0.0
       6 kworker/R-slub_  0.0
       7 kworker/R-netns  0.0
+
+ ---------------------------- C P U   U S A G E   C H E C K -----------------------------------
+
+
+ [2026-02-13 12:38:39]
+
+CPU usage is within safe limits ( 0%)
+
+-----------------------------------------------------------------------------------------------
+
+
+Top CPU-consuming processes:
+ [2026-02-13 12:38:39] 
+ 
+    PID COMMAND         %CPU
+    223 kworker/0:3-xfs  0.4
+   1587 kworker/0:1-eve  0.4
+   1507 sshd             0.2
+    671 firewalld        0.1
+   1570 kworker/0:0-eve  0.1
+      1 systemd          0.0
+      2 kthreadd         0.0
+      3 pool_workqueue_  0.0
+      4 kworker/R-rcu_g  0.0
+
+ ---------------------------- C P U   U S A G E   C H E C K -----------------------------------
+
+
+ [2026-02-13 12:43:18]
+
+CPU usage is within safe limits ( 0%)
+
+-----------------------------------------------------------------------------------------------
+
+
+Top CPU-consuming processes:
+ [2026-02-13 12:43:18] 
+ 
+    PID COMMAND         %CPU
+    223 kworker/0:3-eve  0.4
+   1607 kworker/0:0-ata  0.3
+   1507 sshd             0.2
+   1587 kworker/0:1-eve  0.2
+      1 systemd          0.0
+      2 kthreadd         0.0
+      3 pool_workqueue_  0.0
+      4 kworker/R-rcu_g  0.0
+      5 kworker/R-rcu_p  0.0
+
+ ---------------------------- C P U   U S A G E   C H E C K -----------------------------------
+
+
+ [2026-02-13 12:44:02]
+
+CPU usage is within safe limits ( 0%)
+
+-----------------------------------------------------------------------------------------------
+
+
+Top CPU-consuming processes:
+ [2026-02-13 12:44:02] 
+ 
+    PID COMMAND         %CPU
+   1628 cpu_monitor.sh   1.0
+    223 kworker/0:3-eve  0.4
+   1607 kworker/0:0-ata  0.3
+   1507 sshd             0.2
+   1587 kworker/0:1-eve  0.2
+      1 systemd          0.0
+      2 kthreadd         0.0
+      3 pool_workqueue_  0.0
+      4 kworker/R-rcu_g  0.0
+
+ ---------------------------- C P U   U S A G E   C H E C K -----------------------------------
+
+
+ [2026-02-13 12:44:22]
+
+CPU usage is within safe limits ( 0%)
+
+-----------------------------------------------------------------------------------------------
+
+
+Top CPU-consuming processes:
+ [2026-02-13 12:44:22] 
+ 
+    PID COMMAND         %CPU
+    223 kworker/0:3-eve  0.4
+   1507 sshd             0.2
+   1587 kworker/0:1-eve  0.2
+   1607 kworker/0:0-ata  0.2
+      1 systemd          0.0
+      2 kthreadd         0.0
+      3 pool_workqueue_  0.0
+      4 kworker/R-rcu_g  0.0
+      5 kworker/R-rcu_p  0.0
+
+ ---------------------------- C P U   U S A G E   C H E C K -----------------------------------
+
+
+ [2026-02-13 12:44:24]
+
+CPU usage is within safe limits ( 0%)
+
+-----------------------------------------------------------------------------------------------
+
+
+Top CPU-consuming processes:
+ [2026-02-13 12:44:24] 
+ 
+    PID COMMAND         %CPU
+    223 kworker/0:3-eve  0.4
+   1507 sshd             0.2
+   1587 kworker/0:1-eve  0.2
+   1607 kworker/0:0-ata  0.2
+      1 systemd          0.0
+      2 kthreadd         0.0
+      3 pool_workqueue_  0.0
+      4 kworker/R-rcu_g  0.0
+      5 kworker/R-rcu_p  0.0
+
+ ---------------------------- C P U   U S A G E   C H E C K -----------------------------------
+
+
+ [2026-02-13 12:44:25]
+
+CPU usage is within safe limits ( 2%)
+
+-----------------------------------------------------------------------------------------------
+
+
+Top CPU-consuming processes:
+ [2026-02-13 12:44:25] 
+ 
+    PID COMMAND         %CPU
+    223 kworker/0:3-eve  0.4
+   1507 sshd             0.2
+   1587 kworker/0:1-eve  0.2
+   1607 kworker/0:0-ata  0.2
+      1 systemd          0.0
+      2 kthreadd         0.0
+      3 pool_workqueue_  0.0
+      4 kworker/R-rcu_g  0.0
+      5 kworker/R-rcu_p  0.0
+ 
+-------------------------------- D I S K   U S A G E ------------------------------------------
+
+[2026-02-13 12:48:50] Disk Usage is Normal : 12%
+
+-----------------------------------------------------------------------------------------------
+
+ 
+-------------------------------- D I S K   U S A G E ------------------------------------------
+
+[2026-02-13 12:51:56] Disk Usage is Normal : 12%
+
+-----------------------------------------------------------------------------------------------
+
+ 
+-------------------------------- D I S K   U S A G E ------------------------------------------
+
+[2026-02-13 12:51:57] Disk Usage is Normal : 12%
+
+-----------------------------------------------------------------------------------------------
+
+ 
+-------------------------------- D I S K   U S A G E ------------------------------------------
+
+[2026-02-13 12:51:58] Disk Usage is Normal : 12%
+
+-----------------------------------------------------------------------------------------------
+
