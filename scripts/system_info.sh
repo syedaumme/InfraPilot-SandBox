@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Variable for logfile
+#Variable for logfile - shows history or memory of data
 
 LOG_FILE="../logs/infrapilot.log"
 
@@ -13,6 +13,7 @@ echo -e "\nUptime :\n" >> "$LOG_FILE"
 uptime >> "$LOG_FILE"
 echo -e "\nDisk Usage : \n" >> "$LOG_FILE"
 df -h / >> "$LOG_FILE"
+# Exit Code
 EXIT_CODE=0
 echo -e "\n-----------------------------------------------------------------------------------------------\n" >> "$LOG_FILE"
 exit $EXIT_CODE
