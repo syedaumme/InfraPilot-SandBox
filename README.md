@@ -9,21 +9,6 @@ This is intentionally built as a **system-health sandbox**, prioritizing **clari
 
 ---
 
-## 🎯 Project Intent & Learning Goals
-
-This project was built to achieve three personal and professional goals:
-
-### 1. Strengthen Linux & OS Fundamentals
-- Understand how Linux exposes CPU, disk, and process information
-- Gain confidence reading and interpreting system state
-- Learn how failures and bottlenecks manifest at the OS level
-
-### 2. Build Real DevOps Thinking (Not Just Tools)
-- Learn how DevOps tools *surface* system information
-- Practice automation with intent (cron, scripts)
-- Understand **why** and **when** to automate
----
-
 ## 🧩 High-Level System Architecture
 
 <img width="215" height="793" alt="InfraPilot System Architecture" src="https://github.com/user-attachments/assets/2ca87d81-d0fb-4bbc-b9d6-67e0e8a731f9" />
