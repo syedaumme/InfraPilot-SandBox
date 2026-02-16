@@ -5,7 +5,7 @@ InfraPilot-SandBox is a **fundamentals-first DevOps learning project** designed 
 The project mirrors the *core idea* behind internal DevOps and SRE dashboards:  
 **making operating system state visible, understandable, and explainable**.
 
-This is intentionally built as a **system-health sandbox**, prioritizing **clarity, reasoning, and reliability** over scale or advanced tooling.
+It is a  **system-health sandbox**, prioritizing **clarity, reasoning, and reliability**.
 
 ---
 
