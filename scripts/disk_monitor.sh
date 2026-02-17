@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOG_FILE="../logs/infrapilot.log"
+LOG_FILE="/app/logs/infrapilot.log"
 
 
 THRESHOLD=80
@@ -20,7 +20,7 @@ echo -e "\n---------------------------------------------------------------------
 
 # REAL TIME SNAPSHOT
 
-SUMMARY_FILE="../logs/disk_summary.txt"
+SUMMARY_FILE="/app/logs/disk_summary.txt"
 echo "---------------- DISK USAGE SUMMARY ----------------" > "$SUMMARY_FILE"
 echo "Last Checked : $(date '+%Y-%m-%d %H:%M:%S')" >> "$SUMMARY_FILE"
 echo "Disk Usage : ${usage}%" >> "$SUMMARY_FILE"

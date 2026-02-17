@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOG_FILE="../logs/infrapilot.log"
+LOG_FILE="/app/logs/infrapilot.log"
 
 THRESHOLD=80
 
@@ -25,7 +25,7 @@ ps -eo pid,comm,%cpu --sort=-%cpu | head>>"$LOG_FILE"
 
 # Summary file / Real time snapshot
 
-SUMMARY_FILE="../logs/cpu_summary.txt"
+SUMMARY_FILE="/app/logs/cpu_summary.txt"
 echo "---------------- CPU USAGE SUMMARY ----------------" > "$SUMMARY_FILE"
 echo "Last Checked : $(date '+%Y-%m-%d %H:%M:%S')" >> "$SUMMARY_FILE"
 echo "CPU Usage : ${top_cpu}%" >> "$SUMMARY_FILE"

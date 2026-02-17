@@ -2,7 +2,7 @@
 
 #Variable for logfile - shows history or memory of data
 
-LOG_FILE="../logs/infrapilot.log"
+LOG_FILE="/app/logs/infrapilot.log"
 
 # -e command option is used to include special charaters with \n newline inside echo"
 echo -e "\n-------------------------------- S Y S T E M   I N F O ----------------------------------------\n" >> "$LOG_FILE"
