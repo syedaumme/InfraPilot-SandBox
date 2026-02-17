@@ -1,0 +1,4 @@
+*/5 * * * * root /app/scripts/cpu_monitor.sh >> /app/logs/infrapilot.log 2>&1
+*/5 * * * * root /app/scripts/disk_monitor.sh >> /app/logs/infrapilot.log 2>&1
+*/30 * * * * root /app/scripts/system_info.sh >> /app/logs/infrapilot.log 2>&1
+
