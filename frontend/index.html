@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>InfraPilot Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1> InfraPilot Monitoring Dashboard</h1>
+
+    <div class="grid">
+<div class="card">
+    <h2>🖥  CPU Usage <span id="cpu-status" class="status-dot"></span></h2>
+    <div class="progress">
+        <div id="cpu-bar" class="bar"></div>
+    </div>
+    <p id="cpu-value"></p>
+    <button onclick="openModal('cpu')">View Details</button>
+</div>
+<div class="card">
+    <h2>💾 Disk Usage <span id="disk-status" class="status-dot"></span></h2>
+    <div class="progress">
+        <div id="disk-bar" class="bar"></div>
+    </div>
+    <p id="disk-value"></p>
+    <button onclick="openModal('disk')">View Details</button>
+</div>
+    </div>
+
+    <p class="footer">Last Updated: <span id="updated"></span></p>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modal-title"></h2>
+        <pre id="modal-body"></pre>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
