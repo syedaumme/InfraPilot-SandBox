@@ -1,6 +1,9 @@
+
 # 📌 InfraPilot-SandBox.
 
-InfraPilot-SandBox is a **fundamentals-first DevOps project** designed to demonstrate how a frontend interface can interact with a Linux system to **inspect system health**, **execute shell scripts**, and **present system-level outputs**.
+ InfraPilot is a lightweight, containerized infrastructure monitoring stack built to understand observability fundamentals from first principles.
+
+Rather than relying on enterprise tooling, this project focuses on the mechanics behind monitoring systems.
 
 The project mirrors the *core idea* behind internal DevOps and SRE dashboards:  
 **making operating system state visible, understandable, and explainable**.
@@ -11,23 +14,47 @@ It is a  **system-health sandbox**, prioritizing **clarity, reasoning, and relia
 
 ## 🧩 High-Level System Architecture
 
-<img width="215" height="793" alt="InfraPilot System Architecture" src="https://github.com/user-attachments/assets/2ca87d81-d0fb-4bbc-b9d6-67e0e8a731f9" />
+<img width="512" height="1020" alt="image" src="https://github.com/user-attachments/assets/9d40ac11-a6d3-4f8f-ab03-c18a9760f4b9" />
+
 
 ---
 
-## 🧠 What This Project Does
+## 🧠Purpose
 
-InfraPilot-SandBox incrementally builds a complete DevOps workflow:
+To simulate how monitoring systems:
 
-- Executes Linux inspection commands via Bash scripts
-- Collects and logs system health information in a structured, readable format
-- Uses `cron` for unattended, scheduled execution
-- Packages the backend using Docker for portability
-- Deploys the system using Kubernetes (single-pod design)
-- Automates delivery using Jenkins + GitHub Webhooks
-- Displays system health and logs in a simple frontend UI
+- Collect system metrics
 
-Each layer is added **only after the underlying fundamentals are understood**.
+- Structure logs
+
+- Automate execution
+
+- Isolate runtime environments
+
+- Present system state
+
+This project emphasizes infrastructure thinking over tool usage.
+---
+
+## 🧱 Core Components
+
+• Bash-based CPU & disk monitoring
+• Structured log generation
+• Cron-based automation
+• Dockerized runtime
+• Minimal frontend visualization
+
+---
+
+## 📁 Repository Structure
+```
+scripts/ → Monitoring logic
+logs/ → Generated log outputs
+frontend/ → Dashboard UI
+cheatsheets/ → Linux & backend references
+Dockerfile → Container definition
+mycron → Scheduled execution config
+```
 ---
 
 ## 🛠️ Tech Stack
@@ -37,18 +64,24 @@ Each layer is added **only after the underlying fundamentals are understood**.
 - **Version Control:** Git & GitHub  
 - **Scheduling & Automation:** Cron  
 - **Containerization:** Docker  
-- **Orchestration:** Kubernetes (basic, single pod)  
+- **Orchestration:** Kubernetes 
 - **CI/CD:** Jenkins + GitHub Webhooks  
-- **Frontend:** HTML / CSS  
+- **Frontend:** HTML / CSS / JS 
 
 ---
 ## 📈 Project Status
 
-- 🟢 Actively evolving  
-- 🟢 Fundamentals-first   
-- 🟢 Currently Working on Containerisation.
+- Phase 1: Local monitoring + containerization ✅
+- Phase 2: Kubernetes deployment (in progress)
+- Phase 3: CI/CD integration
+- Phase 4: Health checks & alert simulation
   
 ---
+
+## 🔗 Links
+
+DockerHub: kulsum16
+GitHub: (repo link)
 
 ## 👤 Author
 
