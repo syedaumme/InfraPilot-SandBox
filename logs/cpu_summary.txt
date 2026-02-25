@@ -1,15 +1,13 @@
 ---------------- CPU USAGE SUMMARY ----------------
-Last Checked : 2026-02-13 12:44:25
-CPU Usage :  2%
+Last Checked : 2026-02-17 17:15:01
+CPU Usage :  3%
 
 Top CPU-consuming processes:
     PID COMMAND         %CPU
-   1668 cpu_monitor.sh   1.0
-    223 kworker/0:3-eve  0.4
-   1507 sshd             0.2
-   1587 kworker/0:1-eve  0.2
-   1607 kworker/0:0-ata  0.2
-      1 systemd          0.0
-      2 kthreadd         0.0
-      3 pool_workqueue_  0.0
-      4 kworker/R-rcu_g  0.0
+    155 cron             2.0
+    158 cpu_monitor.sh   1.0
+      1 python3          0.0
+      3 cron             0.0
+    156 sh               0.0
+    177 ps               0.0
+    178 head             0.0

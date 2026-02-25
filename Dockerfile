@@ -1,26 +1,22 @@
 FROM ubuntu:22.04
 
-# Install required packages
-RUN apt update && apt install -y cron procps
+RUN apt update && apt install -y \
+    cron \
+    procps \
+    python3 \
+    && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
 WORKDIR /app
 
-# Copy scripts
 COPY scripts/ ./scripts/
+COPY logs/ ./logs/
+COPY frontend/ ./frontend/
+COPY mycron /etc/cron.d/mycron
 
-# Create logs folder
-RUN mkdir logs
-
-# Make scripts executable
 RUN chmod +x scripts/*.sh
+RUN crontab /etc/cron.d/mycron
 
-# Copy custom crontab file
-COPY mycron /etc/cron.d/infrapilot
+EXPOSE 80
 
-# Give cron file correct permissions
-RUN chmod 0644 /etc/cron.d/infrapilot
-
-# Start cron in foreground
-CMD ["cron", "-f"]
-
+CMD service cron start && \
+    python3 -m http.server 80 --directory /app
