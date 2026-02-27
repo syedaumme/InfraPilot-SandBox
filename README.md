@@ -80,7 +80,6 @@ mycron → Scheduled execution config
 ## 🔗 Links
 
 DockerHub: kulsum16
-GitHub: (repo link)
 
 ## 👤 Author
 
