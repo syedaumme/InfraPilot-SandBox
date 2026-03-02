@@ -5,7 +5,7 @@ let infraLogs = "";
 async function loadData() {
     try {
 
-        const cpuResponse = await fetch('logs/cpu_summary.txt');
+        const cpuResponse = await fetch('/logs/cpu_summary.txt');
         const cpuText = await cpuResponse.text();
         cpuDetails = cpuText;
 
@@ -16,7 +16,7 @@ async function loadData() {
         document.getElementById("cpu-value").textContent = cpuUsage + "%";
 
 
-        const diskResponse = await fetch('logs/disk_summary.txt');
+        const diskResponse = await fetch('/logs/disk_summary.txt');
         const diskText = await diskResponse.text();
         diskDetails = diskText;
 
@@ -27,7 +27,7 @@ async function loadData() {
         document.getElementById("disk-value").textContent = diskUsage + "%";
 
 
-        const logResponse = await fetch('logs/infrapilot.log');
+        const logResponse = await fetch('/logs/infrapilot.log');
         infraLogs = await logResponse.text();
 
         document.getElementById("updated").textContent =
