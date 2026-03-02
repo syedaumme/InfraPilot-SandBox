@@ -1,35 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>InfraPilot Dashboard</title>
+    <title>InfraPilot Monitoring Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-    <h1> InfraPilot Monitoring Dashboard</h1>
 
-    <div class="grid">
-<div class="card">
-    <h2>🖥  CPU Usage <span id="cpu-status" class="status-dot"></span></h2>
-    <div class="progress">
-        <div id="cpu-bar" class="bar"></div>
-    </div>
-    <p id="cpu-value"></p>
-    <button onclick="openModal('cpu')">View Details</button>
-</div>
-<div class="card">
-    <h2>💾 Disk Usage <span id="disk-status" class="status-dot"></span></h2>
-    <div class="progress">
-        <div id="disk-bar" class="bar"></div>
-    </div>
-    <p id="disk-value"></p>
-    <button onclick="openModal('disk')">View Details</button>
-</div>
+    <h1>InfraPilot Monitoring Dashboard</h1>
+
+    <div class="metrics-grid">
+
+        <!-- CPU -->
+        <div class="card">
+            <h2>CPU Usage <span id="cpu-status" class="status-dot"></span></h2>
+
+            <div class="progress">
+                <div id="cpu-bar" class="bar"></div>
+            </div>
+
+            <p id="cpu-value"></p>
+            <button onclick="openModal('cpu')">View Details</button>
+        </div>
+
+        <!-- Disk -->
+        <div class="card">
+            <h2>Disk Usage <span id="disk-status" class="status-dot"></span></h2>
+
+            <div class="progress">
+                <div id="disk-bar" class="bar"></div>
+            </div>
+
+            <p id="disk-value"></p>
+            <button onclick="openModal('disk')">View Details</button>
+        </div>
+
+        <!-- Logs -->
+        <div class="card">
+            <h2>Infra Logs</h2>
+            <p>Shows latest 40 entries</p>
+            <button onclick="openModal('logs')">View Logs</button>
+        </div>
+
     </div>
 
-    <p class="footer">Last Updated: <span id="updated"></span></p>
+    <p class="footer">
+        Last Updated: <span id="updated"></span>
+    </p>
+
 </div>
 
 <!-- Modal -->

@@ -1,10 +1,11 @@
 let cpuDetails = "";
 let diskDetails = "";
+let infraLogs = "";
 
 async function loadData() {
     try {
-        // CPU
-        const cpuResponse = await fetch('../logs/cpu_summary.txt');
+
+        const cpuResponse = await fetch('logs/cpu_summary.txt');
         const cpuText = await cpuResponse.text();
         cpuDetails = cpuText;
 
@@ -14,8 +15,8 @@ async function loadData() {
         updateBar("cpu-bar", cpuUsage);
         document.getElementById("cpu-value").textContent = cpuUsage + "%";
 
-        // Disk
-        const diskResponse = await fetch('../logs/disk_summary.txt');
+
+        const diskResponse = await fetch('logs/disk_summary.txt');
         const diskText = await diskResponse.text();
         diskDetails = diskText;
 
@@ -24,6 +25,10 @@ async function loadData() {
 
         updateBar("disk-bar", diskUsage);
         document.getElementById("disk-value").textContent = diskUsage + "%";
+
+
+        const logResponse = await fetch('logs/infrapilot.log');
+        infraLogs = await logResponse.text();
 
         document.getElementById("updated").textContent =
             new Date().toLocaleTimeString();
@@ -38,25 +43,20 @@ function updateBar(id, value) {
     bar.style.width = value + "%";
     bar.classList.remove("green", "yellow", "red");
 
-    let statusColor;
-    let statusClass;
+    const dotId = id === "cpu-bar" ? "cpu-status" : "disk-status";
+    const dot = document.getElementById(dotId);
+    dot.classList.remove("green", "yellow", "red");
 
     if (value < 60) {
         bar.classList.add("green");
-        statusClass = "status-green";
+        dot.classList.add("green");
     } else if (value < 80) {
         bar.classList.add("yellow");
-        statusClass = "status-yellow";
+        dot.classList.add("yellow");
     } else {
         bar.classList.add("red");
-        statusClass = "status-red";
+        dot.classList.add("red");
     }
-
-    const statusId = id === "cpu-bar" ? "cpu-status" : "disk-status";
-    const statusDot = document.getElementById(statusId);
-
-    statusDot.classList.remove("status-green", "status-yellow", "status-red");
-    statusDot.classList.add(statusClass);
 }
 
 function openModal(type) {
@@ -65,13 +65,20 @@ function openModal(type) {
     const body = document.getElementById("modal-body");
 
     if (type === "cpu") {
-        title.textContent = "Top 10 CPU Processes";
-        body.textContent = cpuDetails.split("\n").slice(-15).join("\n");
+        title.textContent = "Top CPU Processes";
+        body.textContent = cpuDetails;
     }
 
     if (type === "disk") {
         title.textContent = "Disk Usage Details";
         body.textContent = diskDetails;
+    }
+
+    if (type === "logs") {
+        title.textContent = "Latest InfraPilot Logs";
+        const lines = infraLogs.trim().split("\n");
+        const lastForty = lines.slice(-95).join("\n");
+        body.textContent = lastForty;
     }
 
     modal.style.display = "block";

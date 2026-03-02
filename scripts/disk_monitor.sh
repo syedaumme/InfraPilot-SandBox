@@ -7,7 +7,6 @@ THRESHOLD=80
 
 usage=$(df / | tail -1 | awk '{print $5}' | tr -d '%')
 
-echo -e " \n-------------------------------- D I S K   U S A G E ------------------------------------------\n" >> "$LOG_FILE"
 
 if [ "$usage" -gt "$THRESHOLD" ]; then
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] WARNING: Disk is above 80 % : $usage%" >> "$LOG_FILE"
@@ -21,7 +20,6 @@ echo -e "\n---------------------------------------------------------------------
 # REAL TIME SNAPSHOT
 
 SUMMARY_FILE="/app/logs/disk_summary.txt"
-echo "---------------- DISK USAGE SUMMARY ----------------" > "$SUMMARY_FILE"
 echo "Last Checked : $(date '+%Y-%m-%d %H:%M:%S')" >> "$SUMMARY_FILE"
 echo "Disk Usage : ${usage}%" >> "$SUMMARY_FILE"
 echo >> "$SUMMARY_FILE"
