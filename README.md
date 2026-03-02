@@ -1,6 +1,6 @@
 # 📌 InfraPilot-SandBox
 
- InfraPilot is a lightweight, containerized infrastructure monitoring stack built to understand observability fundamentals from first principles.
+InfraPilot is a lightweight, containerized infrastructure monitoring stack built to understand observability fundamentals from first principles.
 
 Rather than relying on enterprise tooling, this project focuses on the mechanics behind monitoring systems.
 
@@ -71,7 +71,7 @@ mycron → Scheduled execution config
 ## 📈 Project Status
 
 - Phase 1: Local monitoring + containerization ✅
-- Phase 2: Kubernetes deployment (in progress)
+- Phase 2: Dashboard Optimization and Kubernetes deployment (in progress)
 - Phase 3: CI/CD integration
 - Phase 4: Health checks & alert simulation
   
