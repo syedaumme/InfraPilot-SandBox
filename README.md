@@ -41,7 +41,7 @@ This project emphasizes infrastructure thinking over tool usage.
 • Structured log generation
 • Cron-based automation
 • Dockerized runtime
-• Minimal frontend visualization
+• Minimal frontend visualization.
 
 ---
 
