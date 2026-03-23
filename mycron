@@ -1,4 +1,6 @@
-*/5 * * * * root /app/scripts/cpu_monitor.sh >> /app/logs/infrapilot.log 2>&1
-*/5 * * * * root /app/scripts/disk_monitor.sh >> /app/logs/infrapilot.log 2>&1
-*/30 * * * * root /app/scripts/system_info.sh >> /app/logs/infrapilot.log 2>&1
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
+*/5 * * * * /app/scripts/cpu_monitor.sh >> /app/logs/cpu.log 2>&1
+*/5 * * * * /app/scripts/disk_monitor.sh >> /app/logs/disk.log 2>&1
+*/5 * * * * /app/scripts/memory_monitor.sh >> /app/logs/memory.log 2>&1

@@ -1,7 +1,755 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="refresh" content="0; url=frontend/index.html">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InfraPilot — System Observatory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #0a0c0f;
+    --surface:  #111418;
+    --surface2: #181c22;
+    --border:   #1e2530;
+    --border2:  #2a3444;
+    --text:     #c8d4e0;
+    --muted:    #5a6a7a;
+    --dim:      #3a4a5a;
+    --green:    #00e5a0;
+    --green-d:  #00a872;
+    --amber:    #f5a623;
+    --red:      #ff4757;
+    --blue:     #4a9eff;
+    --cyan:     #00cfff;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-head: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Subtle scanline texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ── Header ── */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--green);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .logo-icon::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--green);
+    border-radius: 2px;
+    animation: pulse-box 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-box {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .logo-text {
+    font-family: var(--font-head);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #fff;
+  }
+
+  .logo-text span { color: var(--green); }
+
+  .logo-sub {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  #status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--border2);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+
+  #status-badge.ok {
+    border-color: var(--green-d);
+    color: var(--green);
+    background: rgba(0,229,160,0.06);
+  }
+
+  #status-badge.error {
+    border-color: var(--red);
+    color: var(--red);
+    background: rgba(255,71,87,0.06);
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .dot.live { animation: blink 1.4s ease-in-out infinite; }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  #last-update {
+    color: var(--muted);
+    font-size: 11px;
+  }
+
+  /* ── Main layout ── */
+  main {
+    padding: 28px 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Top metrics row ── */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .metric-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .metric-card:hover { border-color: var(--border2); }
+
+  /* Left accent bar */
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 8px 0 0 8px;
+    background: var(--accent, var(--green));
+    opacity: 0.7;
+  }
+
+  .metric-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .metric-value {
+    font-family: var(--font-head);
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+    transition: color 0.5s;
+  }
+
+  .metric-unit {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted);
+    margin-left: 4px;
+  }
+
+  .metric-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* Ring gauge */
+  .gauge-wrap {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .gauge-svg { width: 64px; height: 64px; }
+
+  .gauge-bg { fill: none; stroke: var(--border); stroke-width: 5; }
+
+  .gauge-fill {
+    fill: none;
+    stroke-width: 5;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dasharray 1s cubic-bezier(.4,0,.2,1), stroke 0.5s;
+  }
+
+  /* ── Threshold colors ── */
+  .c-ok    { color: var(--green); }
+  .c-warn  { color: var(--amber); }
+  .c-crit  { color: var(--red); }
+  .s-ok    { stroke: var(--green); }
+  .s-warn  { stroke: var(--amber); }
+  .s-crit  { stroke: var(--red); }
+
+  /* ── Disk section ── */
+  .disk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .disk-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+
+  .disk-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .disk-mount {
+    font-size: 12px;
+    color: var(--cyan);
+  }
+
+  .disk-pct {
+    font-size: 22px;
+    font-family: var(--font-head);
+    font-weight: 600;
+  }
+
+  .disk-bar-track {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .disk-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s cubic-bezier(.4,0,.2,1), background 0.5s;
+  }
+
+  .disk-detail {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ── Log tail ── */
+  .log-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+
+  .log-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+  }
+
+  .log-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .log-tab {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: var(--muted);
+    border: 1px solid transparent;
+    background: none;
+    font-family: var(--font-mono);
+    transition: all 0.2s;
+  }
+
+  .log-tab.active, .log-tab:hover {
+    color: var(--text);
+    border-color: var(--border2);
+    background: var(--surface);
+  }
+
+  .log-body {
+    padding: 16px 20px;
+    height: 200px;
+    overflow-y: auto;
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+
+  .log-body::-webkit-scrollbar { width: 4px; }
+  .log-body::-webkit-scrollbar-track { background: transparent; }
+  .log-body::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+  .log-line { display: block; }
+  .log-line .ts { color: var(--dim); margin-right: 10px; }
+  .log-line .val { color: var(--text); }
+
+  /* ── API source indicator ── */
+  .source-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .source-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--surface);
+  }
+
+  .source-pill .dot { width: 6px; height: 6px; }
+  .source-pill.live-source { border-color: var(--green-d); color: var(--green); }
+  .source-pill.fallback { border-color: var(--amber); color: var(--amber); }
+
+  /* ── Skeleton loader ── */
+  .skeleton {
+    background: linear-gradient(90deg, var(--surface) 25%, var(--surface2) 50%, var(--surface) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* ── Refresh button ── */
+  .btn-refresh {
+    background: none;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+
+  .btn-refresh:hover { border-color: var(--green-d); color: var(--green); }
+
+  /* ── Error state ── */
+  .error-banner {
+    background: rgba(255,71,87,0.08);
+    border: 1px solid rgba(255,71,87,0.3);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: var(--red);
+    display: none;
+  }
+
+  .error-banner.visible { display: block; }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--dim);
+  }
+
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 768px) {
+    header, main, footer { padding-left: 16px; padding-right: 16px; }
+    .metrics-row { grid-template-columns: 1fr; }
+    .header-right { gap: 12px; }
+  }
+</style>
 </head>
-<body></body>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon"></div>
+    <div>
+      <div class="logo-text">Infra<span>Pilot</span></div>
+      <div class="logo-sub">System Observatory</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span id="last-update">—</span>
+    <div id="status-badge" class="error">
+      <div class="dot"></div>
+      <span id="status-text">Connecting</span>
+    </div>
+    <button class="btn-refresh" onclick="fetchMetrics()">↻ Refresh</button>
+  </div>
+</header>
+
+<main>
+
+  <div id="error-banner" class="error-banner"></div>
+
+  <!-- Data source pills: show whether data comes from log files or live fallback -->
+  <div class="section-label">Data sources</div>
+  <div class="source-row" id="source-row">
+    <div class="source-pill"><div class="dot skeleton" style="background:var(--dim)"></div> cpu.log</div>
+    <div class="source-pill"><div class="dot skeleton" style="background:var(--dim)"></div> memory.log</div>
+    <div class="source-pill"><div class="dot skeleton" style="background:var(--dim)"></div> disk.log</div>
+  </div>
+
+  <!-- Core metrics -->
+  <div class="section-label">System metrics</div>
+  <div class="metrics-row">
+
+    <!-- CPU -->
+    <div class="metric-card" style="--accent: var(--green)">
+      <div class="metric-label">CPU usage</div>
+      <div>
+        <span class="metric-value" id="cpu-val">—</span>
+        <span class="metric-unit">%</span>
+      </div>
+      <div class="metric-sub" id="cpu-sub">awaiting data</div>
+      <div class="gauge-wrap">
+        <svg class="gauge-svg" viewBox="0 0 40 40">
+          <circle class="gauge-bg" cx="20" cy="20" r="17"/>
+          <circle class="gauge-fill" id="cpu-gauge" cx="20" cy="20" r="17"
+            stroke-dasharray="0 107" stroke="var(--green)"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Memory -->
+    <div class="metric-card" style="--accent: var(--blue)">
+      <div class="metric-label">Memory usage</div>
+      <div>
+        <span class="metric-value" id="mem-val">—</span>
+        <span class="metric-unit">%</span>
+      </div>
+      <div class="metric-sub" id="mem-sub">awaiting data</div>
+      <div class="gauge-wrap">
+        <svg class="gauge-svg" viewBox="0 0 40 40">
+          <circle class="gauge-bg" cx="20" cy="20" r="17"/>
+          <circle class="gauge-fill" id="mem-gauge" cx="20" cy="20" r="17"
+            stroke-dasharray="0 107" stroke="var(--blue)"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Uptime / timestamp -->
+    <div class="metric-card" style="--accent: var(--cyan)">
+      <div class="metric-label">Last poll</div>
+      <div>
+        <span class="metric-value" style="font-size:28px" id="poll-time">—</span>
+      </div>
+      <div class="metric-sub" id="poll-sub">UTC — polling every 10s</div>
+    </div>
+
+  </div>
+
+  <!-- Disk -->
+  <div class="section-label">Disk usage</div>
+  <div class="disk-grid" id="disk-grid">
+    <div class="disk-card">
+      <div style="color:var(--dim);font-size:12px">Awaiting disk data…</div>
+    </div>
+  </div>
+
+  <!-- Log viewer -->
+  <div class="section-label">Log viewer</div>
+  <div class="log-section">
+    <div class="log-toolbar">
+      <div class="log-toolbar-left">
+        <button class="log-tab active" onclick="switchLog('cpu')">cpu.log</button>
+        <button class="log-tab" onclick="switchLog('disk')">disk.log</button>
+        <button class="log-tab" onclick="switchLog('memory')">memory.log</button>
+      </div>
+      <span style="font-size:11px;color:var(--dim)">raw log content via /api/logs/</span>
+    </div>
+    <div class="log-body" id="log-body">
+      <span style="color:var(--dim)">Select a log above…</span>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <span>InfraPilot v2 — <a href="/health">health</a> · <a href="/api/metrics">api/metrics</a></span>
+  <span id="footer-ts">—</span>
+</footer>
+
+<script>
+// ─── State ───────────────────────────────────────────────
+const API = window.location.origin;   // same host — Flask serves both
+let currentLog = 'cpu';
+let pollTimer;
+
+// ─── Colour helpers ──────────────────────────────────────
+function pctClass(p) {
+  if (p >= 85) return 'c-crit';
+  if (p >= 65) return 'c-warn';
+  return 'c-ok';
+}
+
+function pctStroke(p) {
+  if (p >= 85) return 'var(--red)';
+  if (p >= 65) return 'var(--amber)';
+  return 'var(--green)';
+}
+
+// ─── Gauge update ────────────────────────────────────────
+function setGauge(id, pct) {
+  const circ = 2 * Math.PI * 17; // r=17
+  const fill = (pct / 100) * circ;
+  const el = document.getElementById(id);
+  el.setAttribute('stroke-dasharray', `${fill.toFixed(1)} ${circ.toFixed(1)}`);
+  el.style.stroke = pctStroke(pct);
+}
+
+// ─── Render metrics ──────────────────────────────────────
+function renderMetrics(data) {
+  // CPU
+  if (data.cpu) {
+    const p = data.cpu.used_pct;
+    const el = document.getElementById('cpu-val');
+    el.textContent = p.toFixed(1);
+    el.className = 'metric-value ' + pctClass(p);
+    document.getElementById('cpu-sub').textContent =
+      p >= 85 ? '⚠ HIGH — investigate processes' :
+      p >= 65 ? '↑ Elevated' : '✓ Normal';
+    setGauge('cpu-gauge', p);
+  }
+
+  // Memory
+  if (data.memory) {
+    const p = data.memory.used_pct;
+    const el = document.getElementById('mem-val');
+    el.textContent = p.toFixed(1);
+    el.className = 'metric-value ' + pctClass(p);
+    const sub = data.memory.used_mb !== undefined
+      ? `${data.memory.used_mb} MB / ${data.memory.total_mb} MB`
+      : (p >= 85 ? '⚠ HIGH' : '✓ Normal');
+    document.getElementById('mem-sub').textContent = sub;
+    setGauge('mem-gauge', p);
+  }
+
+  // Poll time
+  const ts = new Date(data.timestamp);
+  const hms = ts.toISOString().slice(11, 19);
+  document.getElementById('poll-time').textContent = hms;
+  document.getElementById('footer-ts').textContent = 'Last fetch: ' + ts.toISOString();
+
+  // Disk
+  if (data.disk && data.disk.length > 0) {
+    const grid = document.getElementById('disk-grid');
+    grid.innerHTML = data.disk.map(d => {
+      const cls = d.used_pct >= 85 ? 'c-crit' : d.used_pct >= 65 ? 'c-warn' : 'c-ok';
+      const barColor = d.used_pct >= 85 ? 'var(--red)' : d.used_pct >= 65 ? 'var(--amber)' : 'var(--green)';
+      return `
+        <div class="disk-card">
+          <div class="disk-header">
+            <span class="disk-mount">${d.mount}</span>
+            <span class="disk-pct ${cls}">${d.used_pct}%</span>
+          </div>
+          <div class="disk-bar-track">
+            <div class="disk-bar-fill" style="width:${d.used_pct}%;background:${barColor}"></div>
+          </div>
+          <div class="disk-detail">
+            <span>Used: ${d.used}</span>
+            <span>Total: ${d.total}</span>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  // Source pills
+  const src = data.log_sources || {};
+  document.getElementById('source-row').innerHTML = [
+    ['cpu', 'cpu.log'],
+    ['memory', 'memory.log'],
+    ['disk', 'disk.log'],
+  ].map(([k, label]) => {
+    const live = src[k];
+    return `<div class="source-pill ${live ? 'live-source' : 'fallback'}">
+      <div class="dot"></div>${label} — ${live ? 'log file' : 'live fallback'}
+    </div>`;
+  }).join('');
+
+  // Status badge
+  document.getElementById('status-badge').className = 'ok';
+  document.getElementById('status-badge').classList.add('ok');
+  document.querySelector('#status-badge .dot').classList.add('live');
+  document.getElementById('status-text').textContent = 'Live';
+  document.getElementById('last-update').textContent =
+    'Updated ' + new Date().toLocaleTimeString();
+  document.getElementById('error-banner').classList.remove('visible');
+}
+
+// ─── Fetch from API ──────────────────────────────────────
+async function fetchMetrics() {
+  try {
+    const res = await fetch(`${API}/api/metrics`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    renderMetrics(data);
+  } catch (err) {
+    document.getElementById('status-badge').className = 'error';
+    document.getElementById('status-text').textContent = 'API error';
+    document.getElementById('error-banner').className = 'error-banner visible';
+    document.getElementById('error-banner').textContent =
+      `Cannot reach API: ${err.message}. Is Flask running on port 5000?`;
+  }
+}
+
+// ─── Log viewer ──────────────────────────────────────────
+async function switchLog(name) {
+  currentLog = name;
+  document.querySelectorAll('.log-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  const body = document.getElementById('log-body');
+  body.innerHTML = '<span style="color:var(--dim)">Loading…</span>';
+  try {
+    const res = await fetch(`${API}/api/logs/${name}.log`);
+    const text = await res.text();
+    body.innerHTML = text.split('\n').map(line => {
+      if (!line.trim()) return '';
+      // Highlight timestamps and numbers
+      const formatted = line
+        .replace(/(\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2})/g, '<span class="ts">$1</span>')
+        .replace(/(\d+\.?\d+%)/g, '<span class="val">$1</span>');
+      return `<span class="log-line">${formatted}</span>`;
+    }).filter(Boolean).join('') || '<span style="color:var(--dim)">(empty — script may not have run yet)</span>';
+    body.scrollTop = body.scrollHeight;
+  } catch (e) {
+    body.innerHTML = `<span style="color:var(--red)">Error fetching log: ${e.message}</span>`;
+  }
+}
+
+// ─── Auto-poll every 10 seconds ──────────────────────────
+fetchMetrics();
+pollTimer = setInterval(fetchMetrics, 10000);
+</script>
+</body>
 </html>
