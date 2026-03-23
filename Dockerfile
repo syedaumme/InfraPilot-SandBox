@@ -19,4 +19,4 @@ RUN crontab /etc/cron.d/mycron
 EXPOSE 80
 
 CMD service cron start && \
-    python3 -m http.server 80 --directory /app
+    python3 -m http.server 80 --directory /app/frontend
