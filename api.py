@@ -8,7 +8,7 @@ filesystem files directly. This API is the bridge between your
 bash scripts and your frontend dashboard.
 """
 
-from flask import Flask, jsonify, Response
+from flask import Flask, jsonify, Response, send_from_directory 
 import os, re, time, subprocess
 from datetime import datetime
 
@@ -129,7 +129,7 @@ def health():
 
 @app.route("/")
 def root():
-    return jsonify({"service": "InfraPilot API", "version": "2.0", "docs": "/api/metrics"})
+    return send_from_directory('/app/frontend', 'index.html')
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=False)

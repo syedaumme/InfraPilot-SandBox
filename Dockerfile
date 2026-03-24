@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
  
 # Install Flask — the API framework
-RUN pip3 install flask --break-system-packages
+RUN pip3 install flask 
  
 WORKDIR /app
  
