@@ -30,7 +30,7 @@ COPY mycron    /etc/cron.d/mycron
 RUN chmod +x scripts/*.sh
  
 # Install the cron schedule
-RUN chmod 0644 /etc/cron.d/mycron && crontab /etc/cron.d/mycron
+RUN chmod 0644 /etc/cron.d/mycron 
  
 # Expose Flask port
 # (v1 exposed 80 for the static server — now Flask runs on 5000)
