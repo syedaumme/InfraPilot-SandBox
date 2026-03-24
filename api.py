@@ -154,7 +154,7 @@ def metrics():
 
 @app.route("/api/logs/<name>")
 def get_log(name):
-    allowed = ["cpu_summary.txt", "disk_summary.txt",
+   allowed = ["cpu_summary.txt", "disk_summary.txt",
                "memory_summary.txt", "infrapilot.log"]
     if name not in allowed:
         return jsonify({"error": "not found"}), 404

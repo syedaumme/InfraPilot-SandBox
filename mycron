@@ -1,13 +1,11 @@
-nano ~/InfraPilot/mycron
+knano ~/InfraPilot/mycron
 ```
 
-Replace everything with this:
+Replace everything with:
 ```
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
-# All three scripts write to infrapilot.log internally
-# No redirection needed here - they handle their own output
 */5 * * * * /app/scripts/cpu_monitor.sh
 */5 * * * * /app/scripts/disk_monitor.sh
 */5 * * * * /app/scripts/memory_monitor.sh
