@@ -1,7 +1,7 @@
 
 # 📌 InfraPilot-SandBox
 
-InfraPilot is a lightweight, containerized infrastructure monitoring stack built to understand observability fundamentals from first principles..
+InfraPilot is a lightweight, containerized infrastructure monitoring stack built to understand observability fundamentals from first principles.
 
 Rather than relying on enterprise tooling, this project focuses on the mechanics behind monitoring systems.
 
