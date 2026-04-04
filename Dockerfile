@@ -1,4 +1,8 @@
 FROM ubuntu:22.04
+
+#Entryfile for running Cron
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
  
 # Suppress interactive prompts during apt installs
 ENV DEBIAN_FRONTEND=noninteractive
@@ -47,3 +51,4 @@ EXPOSE 5000
 # ─────────────────────────────────────────────────────────────────────────────
 CMD service cron start && \
     python3 -m flask --app api.py run --host=0.0.0.0 --port=5000
+CMD ["/bin/bash", "/entrypoint.sh"]

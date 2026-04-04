@@ -732,7 +732,7 @@ async function switchLog(name) {
   const body = document.getElementById('log-body');
   body.innerHTML = '<span style="color:var(--dim)">Loading…</span>';
   try {
-    const res = await fetch(`${API}/api/logs/${name}.log`);
+    const res = await fetch(`${API}/api/logs/${name}`);
     const text = await res.text();
     body.innerHTML = text.split('\n').map(line => {
       if (!line.trim()) return '';
