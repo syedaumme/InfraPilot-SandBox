@@ -1,5 +1,5 @@
 # 🛸 InfraPilot - A System Observatory
-**A Lightweight, First-Principles Infrastructure Observability Stack**.
+**A Lightweight, First-Principles Infrastructure Observability Stack**
 
 [![Docker Hub](https://img.shields.io/badge/DockerHub-Image-blue?logo=docker)](https://hub.docker.com/r/kulsum16/infrapilot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
